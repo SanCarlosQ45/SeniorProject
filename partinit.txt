@@ -1,0 +1,130 @@
+3#------------------------------------------------------------------#
+#             Particle Simulation Initialization                   #
+#------------------------------------------------------------------#
+# This file contains various simulation parameters such as number  # 
+# of particles and constants for each particle group. Comments are #
+# started with a '#' and will be ignored by the parser. Program    #
+# will only recognize partinit.txt as the name of the file.        #
+#                                                                  #
+# Coordinates are taken from origin which is the center of the     #
+# world. Square shapes are taken from the bottom north east corner #
+# while circle are from top center. Radii and length measured in   #
+# particles.                                                       #
+#                                                                  #
+# [group'n']                                                       #
+# Type                                                             #
+# Length/radius                                                    #
+# Position                                                         #
+# Color                                                            #
+# etc...                                                           #
+#                                                                  #
+# Spacing doesn't matter to the parser, but what does are the      #
+# key symbols which are '[', ']', '#', and '='. If you want to     #
+# leave comments then use the hashtag, these can be placed         #
+# anywhere, but if it starts at the begining of a line then the    #
+# whole line is ignored.                                           #
+#                                                                  #
+# Any new parameter that you want to add must be added to the      #
+# parser in the main program as well as the group struct.          #
+#                                                                  #
+#                                                                  #
+#                                                                  #
+#         Currently working shapes and their properties:           #
+#                                                                  #
+#                                                                  #
+# Sphere                                                           #
+#==================================================================#
+# Must be placed at the top of the list due to issues that havent  #
+# been resolved yet. The position coordinate is located at the     #
+# bottom back left of the imaginary square around the sphere.      #
+# The same corner as the origin.                                   #
+#                                                                  #
+#                                                                  #
+# Square                                                           #
+#==================================================================#
+# Only has parameter length, but all others are same. The position #
+# coordinate is taken at the bottom back left corner, same as the  #
+# origin, so if its 0,0,0 then the sphere would be in the back     #
+# left corner.                                                     #
+#                                                                  #
+#                                                                  #
+# Rectangle                                                        #
+#==================================================================#
+# Same as square except has parameter width, length and height.    #
+#                                                                  #
+#                                                                  #
+#                                                                  #
+# Global Parameters                                                #
+#==================================================================#
+#                                                                  #
+# Data Collection: enables data output to files on the hardrive    #
+# Graphics:        enables/disables opengl graphics                #
+# Gravity:         global gravity constant                         #
+# Global Damping:  functions like air resistance                   #
+# Timestep:        timestep between frames/calculations            #
+# Integration Type: type of position integration used, currently   #
+#                   only euler is implemented                      #
+# Kernel Type:     sph kernel type used, currently only gaussian   #
+#                  is implemented                                  #
+#                                                                  #
+#                                                                  #
+# Availible Colors                                                 #
+#==================================================================#
+#                                                                  #
+# Red                                                              #
+# Blue                                                             #
+# Green                                                            #
+# Purple                                                           #
+# Orange                                                           #
+# Yellow                                                           #
+# Purple                                                           #
+#                                                                  #
+#------------------------------------------------------------------#
+# Created by: Josh Lohse                                           #
+# Date:       10/10/2014                                           #
+# Revision:   1.2                                                  #
+#------------------------------------------------------------------#
+
+Data Collection  = false
+Graphics         = true
+Gravity          = 0.0003
+Global Damping   = 1.0
+Timestep         = 0.15
+Integration Type = Euler
+Kernel Type      = Gaussian
+
+[SP2]
+Type       = Sphere
+Radius     = 10
+Color      = Green
+Position   = 0.4, 0.4, 0.4
+Velocity   = 0.0, 0.0, 0.0
+Damping    = 0.04
+Spring     = 0.2
+Shear      = 0.1
+Attraction = 0.03
+
+[SQ1]
+Type       = Square
+Length     = 25
+Color      = Purple
+Position   = 0.1,0.1,0.1
+Velocity   = 0.01,0.01,0.01
+Damping    = 0.04
+Spring     = 0.01
+Shear      = 0.2
+Attraction = 0.0
+
+[SP1]
+Type       = Rectangle
+Length     = 35
+Width      = 1
+Height     = 35
+Color      = Red
+Position   = 0.75, 0.75, 0.75
+Velocity   = -0.01,-0.01,-0.01
+Damping    = 0.04
+Spring     = 0.01
+Shear      = 0.2
+Attraction = 0.0
+
